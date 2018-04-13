@@ -1,0 +1,58 @@
+﻿@using Tercume.WebApp
+@model IEnumerable<Tercume.Entities.Dil>
+
+@{
+    ViewBag.Title = "Diller";
+}
+
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+        <p>
+            @Bootstrap.LinkButton("/Dil/Create", "primary", string.Empty, string.Empty, "plus", " Yeni")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dil_isim)
+                </th>
+               
+                
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dil_isim)
+                    </td>
+                    
+                    
+                    <td>
+                        @Bootstrap.LinkButton("/Dil/Edit/" + item.Id , "warning", "btn-xs", "Düzenle", "edit", string.Empty)
+
+                        @Bootstrap.LinkButton("/Dil/Details/" + item.Id, "info", "btn-xs", "Detaylar", "search", string.Empty)
+
+                        @Bootstrap.LinkButton("/Dil/Delete/" + item.Id, "danger", "btn-xs", "Kaldır", "trash", string.Empty)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>

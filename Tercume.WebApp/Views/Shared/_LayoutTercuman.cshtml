@@ -1,0 +1,810 @@
+﻿@using Tercume.WebApp
+@using Tercume.Entities
+@using Tercume.WebApp.Models
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Kadir Murat Başeren - Udemy">
+    <meta name="author" content="Kadir Murat Başeren - Udemy">
+    <title>MyEvernote Sample</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="~/Content/shop-homepage.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Menü</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/Home/Index">Tercume</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                @if (CurrentSessionsTercuman.User != null)
+                {
+                    <div class="dropdown">
+                        <button class="dropbtn">Yönetim</button>
+                        <div class="dropdown-content">
+                            <div class="dropdown-content">
+
+                                @Bootstrap.LinkMenu("/Note/Create", "plus", " Not Ekle")
+                                @Bootstrap.LinkMenu("/Note/Index", "th-list", " Notlarım")
+                                @Bootstrap.LinkMenu("/Note/MyLikedNotes", "heart", " Beğendiklerim")
+
+                                
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    @if (CurrentSessionsTercuman.User == null)
+                    {
+                        <li>
+                            @Bootstrap.LinkMenu("/Home/Login", "log-in", " Giriş")
+                        </li>
+                        <li>
+                            @Bootstrap.LinkMenu("/Home/Register", "user", " Üye Ol")
+                        </li>
+                    }
+                </ul>
+
+                <div class="nav navbar-nav navbar-right">
+
+                    @if (CurrentSessionsTercuman.User != null)
+                    {
+                        <div class="dropdown">
+                            <button class="dropbtn">@CurrentSessionsTercuman.User.Name</button>
+                            <div class="dropdown-content">
+                                <div class="dropdown-content">
+
+
+                                    @Bootstrap.LinkMenu("/Home/ShowProfile", "user", " Profili Göster")
+
+
+
+                                    @Bootstrap.LinkMenu("/Home/EditProfile", "edit", " Profili Düzenle")
+
+                                    <a href="/Home/DeleteProfile" onclick="return confirm('Hesabınızı silmek istediğinize emin misiniz?');">
+                                        <span class="glyphicon glyphicon-trash"></span> Profili Sil
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                            <div>
+                                @Bootstrap.LinkMenu("/Home/Logout", "log-out", " Mesajlar")
+                            </div>
+                            <div>
+                                @Bootstrap.LinkMenu("/Home/Logout", "log-out", " Çıkış")
+                            </div>
+                    }
+                </div>
+
+
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+    </nav>
+    @RenderBody()
+    @RenderSection("footer", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@using Tercume.WebApp
+    @using Tercume.Entities
+    @using Tercume.WebApp.Models
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <style>
+            .dropbtn {
+                background-color: #4CAF50;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+                .dropdown-content a {
+                    color: black;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+                }
+
+                    .dropdown-content a:hover {
+                        background-color: #f1f1f1
+                    }
+
+            .dropdown:hover .dropdown-content {
+                display: block;
+            }
+
+            .dropdown:hover .dropbtn {
+                background-color: #3e8e41;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+
+                    @if (CurrentSession.User != null)
+                    {
+                        <div class="dropdown">
+                            <button class="dropbtn">Dropdown</button>
+                            <div class="dropdown-content">
+                                <a href="#">Link 1</a>
+                                <a href="#">Link 2</a>
+                                <a href="#">Link 3</a>
+                            </div>
+                        </div>
+                    }
+
+
+
+                <!-- /.navbar-collapse -->
+
+        @RenderBody()
+        @RenderSection("footer", required: false)
+
+    </body>
+    </html>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<!DOCTYPE HTML>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Oxygen &mdash; Free Website Template, Free HTML5 Template by gettemplates.co</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Free HTML5 Website Template by gettemplates.co" />
+        <meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
+        <meta name="author" content="gettemplates.co" />
+        <!--
+            Oxygen by gettemplates.co
+            Twitter: http://twitter.com/gettemplateco
+            URL: http://gettemplates.co
+        -->
+        <!-- Facebook and Twitter integration -->
+        <meta property="og:title" content="" />
+        <meta property="og:image" content="" />
+        <meta property="og:url" content="" />
+        <meta property="og:site_name" content="" />
+        <meta property="og:description" content="" />
+        <meta name="twitter:title" content="" />
+        <meta name="twitter:image" content="" />
+        <meta name="twitter:url" content="" />
+        <meta name="twitter:card" content="" />
+        <!-- <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'> -->
+        <!-- Animate.css -->
+
+        <link href="~/Content/animate.css" rel="stylesheet" />
+        <!-- Icomoon Icon Fonts-->
+
+        <link href="~/Content/icomoon.css" rel="stylesheet" />
+        <!-- Bootstrap  -->
+
+        <link href="~/Content/bootstrap.css" rel="stylesheet" />
+        <!-- Magnific Popup -->
+
+        <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+        <!-- Owl Carousel  -->
+
+        <link href="~/Content/owl.carousel.min.css" rel="stylesheet" />
+
+        <link href="~/Content/owl.theme.default.min.css" rel="stylesheet" />
+        <!-- Theme style  -->
+
+        <link href="~/Content/style.css" rel="stylesheet" />
+        <!-- Modernizr JS -->
+
+        <script src="~/scripts/modernizr-2.6.2.js"></script>
+        <!-- FOR IE9 below -->
+        <!--[if lt IE 9]>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+        <!-- jQuery -->
+
+        <script src="~/scripts/jquery.min.js"></script>
+        <!-- jQuery Easing -->
+
+        <script src="~/scripts/jquery.easing.1.3.js"></script>
+        <!-- Bootstrap -->
+
+        <script src="~/scripts/bootstrap.min.js"></script>
+        <!-- Waypoints -->
+
+        <script src="~/scripts/jquery.waypoints.min.js"></script>
+        <!-- Carousel -->
+
+        <script src="~/scripts/owl.carousel.min.js"></script>
+        <!-- countTo -->
+
+        <script src="~/scripts/jquery.countTo.js"></script>
+        <!-- Magnific Popup -->
+
+        <script src="~/scripts/jquery.magnific-popup.min.js"></script>
+
+        <script src="~/scripts/magnific-popup-options.js"></script>
+        <!-- Main -->
+
+        <script src="~/scripts/main.js"></script>
+    </head>
+    <body>
+
+        <div class="gtco-loader"></div>
+
+        <div id="page">
+            <!--navbar_üst-->
+            <nav class="gtco-nav" role="navigation">
+                <div class="gtco-container">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <div id="gtco-logo"><a href="index.html">Tercume.</a></div>
+                        </div>
+                        @if (CurrentSessionsTercumanTercuman.User != null)
+                        {
+                            <div class="col-xs-8 text-center menu-1">
+                                <ul>
+                                    <li class="active"><a href="index.html">Anasayfa</a></li>
+                                    <li><a href="about.html">Hakkımızda</a></li>
+                                    <li class="has-dropdown">
+                                        <a href="services.html">Neler Yapıyoruz</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Tercume</a></li>
+                                            <li><a href="#">Tercume</a></li>
+                                            <li><a href="#">Tercume</a></li>
+                                            <li><a href="#">Tercume</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-dropdown">
+                                        <a href="#">Yaygın Diller</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">İngilizce</a></li>
+                                            <li><a href="#">Arapça</a></li>
+                                            <li><a href="#">Çince</a></li>
+                                            <li><a href="#">Rusca</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="contact.html">İletişim</a></li>
+                                </ul>
+                            </div>
+                        }
+
+                        <div class="col-xs-2 text-right hidden-xs menu-2">
+                            <ul>
+                                @if (CurrentSessionsTercumanTercuman.User == null)
+                                {
+                                    <li class="btn-cta"><a href="/Home/LoginTercuman"><span>Giriş</span></a></li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+            <!--arama alanı dinamik-->
+            @RenderBody()
+            <!--arama alanının altı-->
+            <div id="gtco-features">
+                <div class="gtco-container">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                <span class="icon">
+                                    <i class="icon-eye"></i>
+                                </span>
+                                <h3>Retina Ready</h3>
+                                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                                <p><a href="#" class="btn btn-primary">Learn More</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                <span class="icon">
+                                    <i class="icon-command"></i>
+                                </span>
+                                <h3>Fully Responsive</h3>
+                                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                                <p><a href="#" class="btn btn-primary">Learn More</a></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-4">
+                            <div class="feature-center animate-box" data-animate-effect="fadeIn">
+                                <span class="icon">
+                                    <i class="icon-power"></i>
+                                </span>
+                                <h3>Web Starter</h3>
+                                <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                                <p><a href="#" class="btn btn-primary">Learn More</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="gtco-features-2">
+                <div class="gtco-container">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                            <h2>Why Choose Us</h2>
+                            <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                                <span class="icon">
+                                    <i class="icon-check"></i>
+                                </span>
+                                <div class="feature-copy">
+                                    <h3>Retina Ready</h3>
+                                    <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                                </div>
+                            </div>
+                            <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                                <span class="icon">
+                                    <i class="icon-check"></i>
+                                </span>
+                                <div class="feature-copy">
+                                    <h3>Fully Responsive</h3>
+                                    <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                                </div>
+                            </div>
+                            <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
+                                <span class="icon">
+                                    <i class="icon-check"></i>
+                                </span>
+                                <div class="feature-copy">
+                                    <h3>Ready To Use</h3>
+                                    <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="gtco-video gtco-bg" style="background-image: url(~/images/img_1.jpg); ">
+
+                                <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
+                                <div class="overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--sayac dinamik-->
+            <div id="gtco-counter" class="gtco-bg gtco-counter" style="background-image:url(~/images/img_bg_2.jpg);">
+                <div class="gtco-container">
+                    <div class="row">
+                        <div class="display-t">
+                            <div class="display-tc">
+                                <div class="col-md-3 col-sm-6 animate-box">
+                                    <div class="feature-center">
+                                        <span class="icon">
+                                            <i class="icon-eye"></i>
+                                        </span>
+                                        <span class="counter js-counter" data-from="0" data-to="22070" data-speed="5000" data-refresh-interval="50">1</span>
+                                        <span class="counter-label">Creativity Fuel</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 animate-box">
+                                    <div class="feature-center">
+                                        <span class="icon">
+                                            <i class="icon-anchor"></i>
+                                        </span>
+                                        <span class="counter js-counter" data-from="0" data-to="97" data-speed="5000" data-refresh-interval="50">1</span>
+                                        <span class="counter-label">Happy Clients</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 animate-box">
+                                    <div class="feature-center">
+                                        <span class="icon">
+                                            <i class="icon-briefcase"></i>
+                                        </span>
+                                        <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
+                                        <span class="counter-label">Projects Done</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 animate-box">
+                                    <div class="feature-center">
+                                        <span class="icon">
+                                            <i class="icon-clock"></i>
+                                        </span>
+                                        <span class="counter js-counter" data-from="0" data-to="212023" data-speed="5000" data-refresh-interval="50">1</span>
+                                        <span class="counter-label">Hours Spent</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--mutlu müşteriler-->
+            <div id="gtco-testimonial">
+                <div class="gtco-container">
+                    <!-- <div class="row"> -->
+                    <div class="row animate-box">
+                        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                            <h2>Testimonial</h2>
+                        </div>
+                    </div>
+                    <div class="row animate-box">
+
+
+                        <div class="owl-carousel owl-carousel-fullwidth ">
+                            <div class="item">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <img src="~/images/person_1.jpg" alt="user">
+                                    </figure>
+                                    <span>Jean Doe, via <a href="#" class="twitter">Twitter</a></span>
+                                    <blockquote>
+                                        <p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <img src="~/images/person_2.jpg" alt="user">
+                                    </figure>
+                                    <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
+                                    <blockquote>
+                                        <p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="testimony-slide active text-center">
+                                    <figure>
+                                        <img src="~/images/person_3.jpg" alt="user">
+                                    </figure>
+                                    <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
+                                    <blockquote>
+                                        <p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
+                                    </blockquote>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div id="gtco-services">
+                <div class="gtco-container">
+
+                    <div class="row animate-box">
+                        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                            <h2>What We Offer</h2>
+                            <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                        </div>
+                    </div>
+                    <div class="row animate-box">
+
+                        <div class="gtco-tabs">
+                            <ul class="gtco-tab-nav">
+                                <li class="active"><a href="#" data-tab="1"><span class="icon visible-xs"><i class="icon-command"></i></span><span class="hidden-xs">Web Design</span></a></li>
+                                <li><a href="#" data-tab="2"><span class="icon visible-xs"><i class="icon-bar-graph"></i></span><span class="hidden-xs">Online Marketing</span></a></li>
+                                <li><a href="#" data-tab="3"><span class="icon visible-xs"><i class="icon-bag"></i></span><span class="hidden-xs">E-Commerce</span></a></li>
+                                <li><a href="#" data-tab="4"><span class="icon visible-xs"><i class="icon-box"></i></span><span class="hidden-xs">Logo &amp; Branding</span></a></li>
+                            </ul>
+                            <!-- Tabs -->
+                            <div class="gtco-tab-content-wrap">
+                                <div class="gtco-tab-content tab-content active" data-tab-content="1">
+                                    <div class="col-md-6">
+                                        <div class="icon icon-xlg">
+                                            <i class="icon-command"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2>Web Design</h2>
+                                        <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
+                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">Keep it simple</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">Less is more</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gtco-tab-content tab-content" data-tab-content="2">
+                                    <div class="col-md-6">
+                                        <div class="icon icon-xlg">
+                                            <i class="icon-bar-graph"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2>Online Marketing</h2>
+                                        <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
+                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">Ready to use</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">100% Satisfaction</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="gtco-tab-content tab-content" data-tab-content="3">
+                                    <div class="col-md-6">
+                                        <div class="icon icon-xlg">
+                                            <i class="icon-bag"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2>e-Commerce</h2>
+                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
+                                        <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">Easy to shop</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">No credit card required</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="gtco-tab-content tab-content" data-tab-content="4">
+                                    <div class="col-md-6">
+                                        <div class="icon icon-xlg">
+                                            <i class="icon-box"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h2>Logo &amp; Branding</h2>
+                                        <p>Paragraph placeat quis fugiat provident veritatis quia iure a debitis adipisci dignissimos consectetur magni quas eius nobis reprehenderit soluta eligendi quo reiciendis fugit? Veritatis tenetur odio delectus quibusdam officiis est.</p>
+                                        <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis molestias totam fugiat soluta accusantium omnis quod similique placeat at. Dolorum ducimus libero fuga molestiae asperiores obcaecati corporis sint illo facilis.</p>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">Pixel perfect</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <h2 class="uppercase">User Interface Expert</h2>
+                                                <p>Ullam dolorum iure dolore dicta fuga ipsa velit veritatis</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gtco-started">
+                <div class="gtco-container">
+                    <div class="row animate-box">
+                        <div class="col-md-8 col-md-offset-2 text-center gtco-heading">
+                            <h2>Get Started</h2>
+                        </div>
+                    </div>
+                    <div class="row animate-box">
+                        <div class="col-md-12">
+                            <form class="form-inline">
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label for="email" class="sr-only">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Email">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label for="password" class="sr-only">Password</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4">
+                                    <button type="submit" class="btn btn-default btn-block">Sign Up</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--bize ulaşın email-->
+            <footer id="gtco-footer" role="contentinfo">
+                <div class="gtco-container">
+                    <div class="row row-pb-md">
+                        <div class="col-md-4 gtco-widget">
+                            <h3>The Company</h3>
+                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                            <p><a href="#">Learn More</a></p>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                            <ul class="gtco-footer-links">
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Help</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Meetups</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                            <ul class="gtco-footer-links">
+                                <li><a href="#">Shop</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Testimonials</a></li>
+                                <li><a href="#">Handbook</a></li>
+                                <li><a href="#">Held Desk</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 col-md-push-1">
+                            <ul class="gtco-footer-links">
+                                <li><a href="#">Find Designers</a></li>
+                                <li><a href="#">Find Deelopers</a></li>
+                                <li><a href="#">Teams</a></li>
+                                <li><a href="#">Advertise</a></li>
+                                <li><a href="#">API</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            <p class="pull-left">
+                                <small class="block">&copy; 2016 Free HTML5. All Rights Reserved.</small>
+                                <small class="block">Designed by <a href="http://gettemplates.co/" target="_blank">GetTemplates.co</a> Demo Images: <a href="http://unsplash.co/" target="_blank">Unsplash</a></small>
+                            </p>
+                            <p class="pull-right">
+                                <ul class="gtco-social-icons pull-right">
+                                    <li><a href="#"><i class="icon-twitter"></i></a></li>
+                                    <li><a href="#"><i class="icon-facebook"></i></a></li>
+                                    <li><a href="#"><i class="icon-linkedin"></i></a></li>
+                                    <li><a href="#"><i class="icon-dribbble"></i></a></li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div class="gototop js-top">
+            <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+        </div>
+
+
+    </body>
+    </html>*@

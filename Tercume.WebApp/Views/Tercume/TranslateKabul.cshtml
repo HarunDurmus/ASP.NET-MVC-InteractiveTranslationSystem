@@ -1,0 +1,58 @@
+﻿@model Tercume.Entities.Translate
+@{
+    ViewBag.Title = "TranslateKabul";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h4></h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+                        @*<div class="form-group">
+                                @Html.LabelFor(model => model.Translator.Id, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Translator.Id, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-8">
+                                @Bootstrap.Button("success", string.Empty, "submit", "plus", " Kaydet")
+                                @*@Bootstrap.LinkButton("/Note/Index", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")*@
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        </section>
+    </div>

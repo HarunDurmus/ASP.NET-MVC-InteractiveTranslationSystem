@@ -1,0 +1,51 @@
+﻿@model Tercume.Entities.Tercuman
+
+@{
+    ViewBag.Title = "Tercüman Detay";
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>@ViewBag.Title</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h4>Tercüman</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Surname)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Surname)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Meslek)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Meslek)
+            </dd>
+
+        </dl>
+        <div class="col-md-8 col-md-offset-2">
+            <p>
+                @Bootstrap.LinkButton("/Tercuman/Edit/" + Model.Id, "warning", string.Empty, string.Empty, "edit", " Düzenle")
+                @Bootstrap.LinkButton("/Tercuman/Index", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")
+            </p>
+        </div>
+    </div>
+</div>

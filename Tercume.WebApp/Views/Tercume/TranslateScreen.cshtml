@@ -1,0 +1,57 @@
+﻿@using Tercume.Entities
+@model Translate
+
+@{
+    ViewBag.Title = "TranslateScreen";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+          
+          
+                <div class="col-md-8 col-md-offset-2">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.Text, 5, 30, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TercumeText, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextAreaFor(model => model.TercumeText, 5, 30, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8">
+                                    @Bootstrap.Button("success", string.Empty, "submit", "floppy-save", " Kaydet")
+                                    @Bootstrap.LinkButton("/Home/TercumanIndex", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-8">
+                                    @*@Bootstrap.Button("danger", string.Empty, "submit", "bullhorn", " Bitir ")*@
+                                    @Bootstrap.LinkButton("/Tercume/TranslateFinish/" + Model.Id, "danger", string.Empty, string.Empty, "bullhorn", " Bitir")
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+        
+            
+
+
+        </div>
+    </section>
+</div>

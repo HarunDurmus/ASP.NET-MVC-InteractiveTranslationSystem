@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Tercume.Entities.Translate>
+@{
+    ViewBag.Title = "TercumeGecmisiTercuman";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2>@ViewBag.Title</h2>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StartDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EndDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Text)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TercumeText)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StartDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EndDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Text)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+        </section>
+    </div>
+

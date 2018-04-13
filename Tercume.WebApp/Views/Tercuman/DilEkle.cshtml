@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Tercume.Entities.Dil>
+
+@{
+    ViewBag.Title = "DilEkle";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <ul class="list-group" id="ItemList">
+                            <li class=" list-group-item-heading list-group-item active">
+                                <h4 class="list-group-item-text">Dil ekle</h4>
+                            </li>
+                            @foreach (Tercume.Entities.Dil item in Model)
+                            {
+                                <li class="list-group-item">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="Check_@item.Id" />
+                                        <label for="Check_@item.Id">@item.Dil_isim</label>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+
+
+
+
+
+                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <a class="btn btn-success"  onclick="SaveList()" ><span class="glyphicon glyphicon-floppy-saved"></span>Dil Ekle </a>
+                                @*@Bootstrap.Button("success", string.Empty, "submit", "floppy-saved", " Kaydet")*@
+                                @Bootstrap.LinkButton("/Home/IndexTercuman", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        </section>
+    </div>
+
+
+
+<script>
+    
+    var SaveList = function () {
+
+
+        var arrItem = [];
+        var comaSeparetedIds = "";
+        $("#ItemList li input[type=checkbox]").each(function (index, val) {
+          
+            var checkId = $(val).attr("Id");
+            var arr = checkId.split('_');
+            var currentCheckboxId = arr[1];
+            var Ischecked = $("#" + checkId).is(":checked", true);
+
+            if (Ischecked) {
+                arrItem.push(currentCheckboxId);
+            }
+        })
+
+ 
+        if (arrItem.length != 0) {
+            comaSeparetedIds = arrItem.toString();
+
+            $.ajax({
+                url: "/Tercuman/SaveList",
+                type: "POST",
+                data: { ItemList: comaSeparetedIds },
+                succes: function (response)
+                {
+                    //kod buraya yazılır.
+                    window.location.href = '/Home/IndexTercuman/';
+                }
+            })
+            
+        }
+       
+        window.location.reload()
+
+    }
+</script>
+
+
+
+

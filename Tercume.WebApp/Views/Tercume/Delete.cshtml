@@ -1,0 +1,59 @@
+﻿@model Tercume.Entities.Translate
+
+@{
+    ViewBag.Title = "Tecüme Kaldır";
+}
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h2>@ViewBag.Title</h2>
+        <h3>Silmek istediğinize emin misiniz?</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <h4>Tercüme</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Owner.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Owner.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Translator.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Translator.Name)
+            </dd>
+
+            
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                @Bootstrap.Button("danger", string.Empty, "submit", "remove", " Kaldır")
+                @Bootstrap.LinkButton("/Tercume/Index", "default", string.Empty, string.Empty, "arrow-left", " Geri Dön!")
+            </div>
+        }
+
+    </div>
+
+</div>

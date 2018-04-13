@@ -1,0 +1,98 @@
+﻿@using Tercume.Entities
+@model Translate
+@{
+    ViewBag.Title = "MailRead";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Tercüme İstek Okuma Ekranı
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Ana Sayfa</a></li>
+            <li class="active">Tercüme İstekleri</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="~/Mail/ComposeTercuman" class="btn btn-primary btn-block margin-bottom">Cevapla</a>
+                
+                <!-- /. box -->
+                
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">İstek Okuma </h3>
+                        <div class="box-tools pull-right">
+                            <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
+                            <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-info">
+                            <h3></h3>
+                            <h5>
+                                kimden: @Model.Owner.Email<br />
+                                isim:   @Model.Owner.Name
+                                <span class="mailbox-read-time pull-right"></span>
+                            </h5>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Reply">
+                                    <i class="fa fa-reply"></i>
+                                </button>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" data-container="body" title="Forward">
+                                    <i class="fa fa-share"></i>
+                                </button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Print">
+                                <i class="fa fa-print"></i>
+                            </button>
+                        </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="mailbox-read-message">
+                            
+                            <p>@Model.Text</p>
+                            <p>Başlangıç Tarihi: @Model.StartDate</p>
+                            <p>Bitiş Tarihi:     @Model.EndDate</p>
+                            
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+                    <!-- /.box-body -->
+                    
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                        <div class="pull-right">
+                         
+                        </div>
+                        @*<button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Reddet</button>*@
+                        @*<button type="button" class="btn btn-default"><i class="fa fa-print"></i> Kabul et</button>*@
+                        @Bootstrap.LinkButton("/Tercume/TranslateReddet/" + Model.Id, "default", string.Empty, string.Empty, string.Empty,"Reddet")
+                        @Bootstrap.LinkButton("/Tercume/TranslateKabul/" + Model.Id, "default", string.Empty, string.Empty, string.Empty, "kabul et")
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>

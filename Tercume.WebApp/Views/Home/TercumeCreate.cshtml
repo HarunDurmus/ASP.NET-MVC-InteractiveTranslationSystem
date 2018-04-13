@@ -1,0 +1,81 @@
+﻿@model Tercume.Entities.Translate
+@{
+    ViewBag.Title = "TercumeCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/validation-summary.css" rel="stylesheet" />
+@using (Html.BeginForm("TercumeCreate", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    @* This AntiForgeryTokey is used for prevent CSRF Attack*@
+<fieldset>
+
+    @{int ter_Id = (int)ViewBag.Tercuman_id;
+        Model.ter_id = ter_Id;
+
+    }
+    @Html.HiddenFor(model => model.ter_id)
+    <legend>Carrer</legend>
+    @if (ViewBag.Message != null)
+    {
+        <span style="color:green">
+            @ViewBag.Message
+        </span>
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.HedefDil, "Hedef Dil", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Dil_idHedef", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.KaynakDil, "Kaynak Dil", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("Dil_idKaynak", null, htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.StartDate, new { htmlAttributes = new { @style = "width: 800px; height: 800px" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.EndDate, new { htmlAttributes = new { @style = "width: 800px; height: 800px" } })
+        </div>
+    </div>
+
+
+    <div class="editor-label">
+        PDF seçiniz
+    </div>
+    <div class="editor-field">
+        <input type="file" name="file" />
+        @Html.ValidationMessage("CustomError")
+    </div>
+    <p>
+        <input type="submit" value="Create" />
+    </p>
+</fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+

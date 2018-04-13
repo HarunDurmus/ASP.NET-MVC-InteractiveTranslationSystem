@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.WebApp", "Tercume.WebApp\Tercume.WebApp.csproj", "{4D52E3D4-CD79-4809-8011-D282E8124FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.BusinessLayer", "Tercume.BusinessLayer\Tercume.BusinessLayer.csproj", "{45C58F5B-47BB-4120-9B4F-15093136EBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.DataAccessLayer", "Tercume.DataAccessLayer\Tercume.DataAccessLayer.csproj", "{3C1CB07A-A1D2-49A5-939C-FAC3739790C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.Entities", "Tercume.Entities\Tercume.Entities.csproj", "{CA8C12D4-33DA-4682-8E8E-85643605ED0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.Core", "Tercume.Core\Tercume.Core.csproj", "{7592EE3B-D4E8-444C-8573-BFC6A5900951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tercume.Common", "Tercume.Common\Tercume.Common.csproj", "{E0B90031-9335-4371-9728-C0D2B624C627}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D52E3D4-CD79-4809-8011-D282E8124FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D52E3D4-CD79-4809-8011-D282E8124FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D52E3D4-CD79-4809-8011-D282E8124FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D52E3D4-CD79-4809-8011-D282E8124FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C58F5B-47BB-4120-9B4F-15093136EBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C58F5B-47BB-4120-9B4F-15093136EBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C58F5B-47BB-4120-9B4F-15093136EBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C58F5B-47BB-4120-9B4F-15093136EBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C1CB07A-A1D2-49A5-939C-FAC3739790C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C1CB07A-A1D2-49A5-939C-FAC3739790C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C1CB07A-A1D2-49A5-939C-FAC3739790C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C1CB07A-A1D2-49A5-939C-FAC3739790C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA8C12D4-33DA-4682-8E8E-85643605ED0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA8C12D4-33DA-4682-8E8E-85643605ED0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA8C12D4-33DA-4682-8E8E-85643605ED0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA8C12D4-33DA-4682-8E8E-85643605ED0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7592EE3B-D4E8-444C-8573-BFC6A5900951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7592EE3B-D4E8-444C-8573-BFC6A5900951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7592EE3B-D4E8-444C-8573-BFC6A5900951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7592EE3B-D4E8-444C-8573-BFC6A5900951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0B90031-9335-4371-9728-C0D2B624C627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0B90031-9335-4371-9728-C0D2B624C627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0B90031-9335-4371-9728-C0D2B624C627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0B90031-9335-4371-9728-C0D2B624C627}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFC1EA31-689E-44AA-8C6E-A64BDACED639}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,103 @@
+﻿@model Tercume.Entities.Mesaj
+@{
+    ViewBag.Title = "ComposeTercuman";
+    Layout = "~/Views/Shared/_LayoutTercumanProfil.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1>
+            Mesaj Gönder
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> ana sayfa</a></li>
+            <li class="active">Mesaj Gönder</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="~/Mail/TercumanMailBox" class="btn btn-primary btn-block margin-bottom">Gelen kutusu</a>
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Folders</h3>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body no-padding">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li>
+                                <a href="~/Mail/TercumanMailBox">
+                                    <i class="fa fa-inbox"></i>Gelen kutusu
+                                    
+                                </a>
+                            </li>
+                            <li><a href="#"><i class="fa fa-envelope-o"></i> Göderilenler</a></li>
+                            
+                            
+                        </ul>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /. box -->
+                <div class="box box-solid">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Labels</h3>
+                        <div class="box-tools">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Mesaj Gönder</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.receiver_Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "to" } })
+                            @*<input class="form-control" placeholder="To:">*@
+                        </div>
+                        <div class="form-group">
+                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control", @placeholder = "Konu" } })
+                            @*<input class="form-control" placeholder="Subject:">*@
+                        </div>
+                        <div class="form-group">
+                            @Html.TextAreaFor(model => model.Text, 5, 30, new { @class = "form-control" })
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Gönder</button>
+                        </div>
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+
+

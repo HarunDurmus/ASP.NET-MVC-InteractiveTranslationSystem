@@ -1,0 +1,145 @@
+﻿@model IEnumerable<Tercume.Entities.Tercuman>
+
+@{
+    ViewBag.Title = "TercumanList";
+}
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfileImageFilename)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProfileImageFilename)
+        </td>
+        
+        
+    </tr>
+}
+
+</table>*@
+
+
+@*<link href="~/Content/Translator.css" rel="stylesheet" />*@
+
+<section id="t-cards">
+
+    <div class="container">
+        <div class="row">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+            <div class="container">
+                <div class="row ">
+                    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                    <!-- bootsnipp Circle Menu -->
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-5715866801509976"
+                         data-ad-slot="3922266447"
+                         data-ad-format="auto"></ins>
+                    <script>
+                        (adsbygoogle = window.adsbygoogle || []).push({});
+                    </script>
+                    <br>
+                    <br>
+                    <div class="col-lg-12">
+                        <div>
+                        @foreach (Tercume.Entities.Tercuman tercuman in Model)
+                        {
+                            <div class="col-md-4">
+                                <div class="profile-card text-center">
+                                    <img class="img-circle" src="~/images/@tercuman.ProfileImageFilename">
+                                    <div class="profile-info">
+                                        @*<img class="profile-pic" src="https://pbs.twimg.com/profile_images/711000557742395396/jzm8hqwW.jpg">*@
+                                        <h2 class="hvr-underline-from-center">@tercuman.Name<span>@tercuman.Surname / @tercuman.Meslek</span></h2>
+                                        <div>@tercuman.Biyografi</div>
+                                        <a href="http://www.twitter.com"><i class="fa fa-twitter fa-2x"></i></a>
+                                        @Bootstrap.LinkButton("/Home/TercumeCreate/" + tercuman.Id, string.Empty, string.Empty, string.Empty, "envelope", string.Empty)
+                                        <a href="http://www.linkedin.com"><i class="fa fa-linkedin fa-2x"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                                         
+                        }      
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+
+
+    @*<div class="container">
+        <div class="row">
+            @foreach (Tercume.Entities.Tercuman tercuman in Model)
+            {
+                <div class="col-sm-6 col-md-3">
+                        <div class="panel panel-default panel-card">
+                            <div class="panel-heading">
+                                <img src="https://unsplash.imgix.net/12/barley.jpg?q=75&fm=jpg&s=f39de5ca1970a13dbe6af6c86b3c47ec" />
+                                <button class="btn btn-primary btn-sm" role="button">Profile git</button>
+
+                            </div>
+                            <div class="panel-figure">
+                                <img class="img-responsive img-circle" src="@tercuman.ProfileImageFilename" />
+                            </div>
+                            <div class="panel-body text-center">
+                                <h4 class="panel-header"><a href="https://twitter.com/maridlcrmn">@tercuman.Name</a></h4>
+                                <h2>@Html.ActionLink("Ptofile git", "ShowTransloterProfile", new { tercuman.Id })</h2>
+                            </div>
+                            <div class="panel-thumbnails">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="thumbnail">
+                                            <img src="http://placemi.com/mzwlj/60x60" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="thumbnail">
+                                            <img src="http://placemi.com/yboaj/60x60" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="thumbnail">
+                                            <img src="http://placemi.com/gv3bp/60x60" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            }
+
+
+
+
+
+
+              
+   
+        </div>
+    </div>*@
+</section>

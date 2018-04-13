@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Tercume.Entities.Translate>
+@{
+    ViewBag.Title = "Tercümeler";
+}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <h2>@ViewBag.Title</h2>
+        <hr />
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <p>
+            @Bootstrap.LinkButton("/Tercume/Create", "primary", string.Empty, string.Empty, "plus", " Yeni")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HedefDil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KaynakDil)
+                </th>
+                
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HedefDil)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.KaynakDil)
+                    </td>
+                    <td width="150">
+                        
+                        @Bootstrap.LinkButton("/Tercume/Edit/" + item.Id, "warning", "btn-xs", "Düzenle", "edit", string.Empty)
+                        @Bootstrap.LinkButton("/Tercume/Details/" + item.Id, "info", "btn-xs", "Detaylar", "search", string.Empty)
+                        @Bootstrap.LinkButton("/Tercume/Delete/" + item.Id, "danger", "btn-xs", "Kaldır", "trash", string.Empty)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
