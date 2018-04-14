@@ -6,4 +6,4 @@ Proje Tercümanlarla tercüme isteği olan kişileri bir araya getiren bir platf
 	> Tercüme yapar para kazanır
 
 - Müşteri.
-	> Tercüme metni sunup ücretir karşılığında tercüme yaptırır.
+	> Tercüme metni sunup ücreti karşılığında tercüme yaptırır.
